@@ -1,0 +1,55 @@
+[build-system]
+requires = [ "setuptools" ]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chipsff"
+description = "CHIPSFF: A force field analysis toolkit"
+version = "2024.10.20"
+authors = [
+  {name = "Daniel Wines", email = "daniel.wines@nist.gov"},
+  {name = "Kamal Choudhary"}
+]
+dependencies = [
+  "numpy>=1.22.0",
+  "scipy>=1.6.3",
+  "jarvis-tools>=2021.07.19",
+  "pydantic",
+  "pydantic_settings",
+  "pandas",
+  "ase",
+  "h5py",
+  "plotly",
+  "scikit-learn",
+  "requests",
+  "tqdm",
+  "pyyaml"
+]
+requires-python = ">=3.8, <3.11"
+
+[project.optional-dependencies]
+sevennet = ["sevenn"]
+eqV2 = ["fairchem"]
+phonons = ["phonopy", "ruamel", "phono3py"]
+alignn_ff = ["alignn"]
+matgl = ["matgl"]
+mace = ["mace"]
+orb = ["orb"]
+chgnet = ["chgnet"]
+elastic = ["elastic"]
+all = [
+  "sevenn",
+  "fairchem",
+  "phonopy",
+  "ruamel",
+  "phono3py",
+  "alignn",
+  "matgl",
+  "mace",
+  "orb",
+  "chgnet",
+  "elastic",
+]
+
+[project.scripts]
+run = "chipsff.run_chipsff:main"
