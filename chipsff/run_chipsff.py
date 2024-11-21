@@ -37,10 +37,18 @@ from jarvis.db.jsonutils import loadjson
 from chipsff.config import CHIPSFFConfig
 from tqdm import tqdm
 
-dft_3d = data("dft_3d")
-vacancydb = data("vacancydb")
+# HACK: If jarvis.data isn't given a store_dir arg it
+# writes to the python install directory, which is very naughty.
+# I plan to submit a PR so jarvis doesn't do that by default, but for now:
+XDG_CACHE_DIR = os.environ.get("XDG_CACHE_HOME", os.path.expanduser("~/.cache"))
+JARVIS_STORE_DIR = os.path.join(XDG_CACHE_DIR, "jarvis-tools")
+if not os.path.exists(JARVIS_STORE_DIR):
+    os.makedirs(JARVIS_STORE_DIR)
+# FIXME: Shouldn't this be in main?
+dft_3d = data("dft_3d", store_dir=JARVIS_STORE_DIR)
+vacancydb = data("vacancydb", store_dir=JARVIS_STORE_DIR)
 # surf_url = "https://figshare.com/ndownloader/files/46355689"
-surface_data = data("surfacedb")
+surface_data = data("surfacedb", store_dir=JARVIS_STORE_DIR)
 # get_request_data(js_tag="surface_db_dd.json", url=surf_url)
 
 
