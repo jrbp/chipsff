@@ -187,6 +187,8 @@ def setup_calculator(calculator_type, calculator_settings):
         calculator: An instance of the specified calculator.
     """
     if calculator_type == "matgl":
+        # FIXME: Consider wrapping these imports of optional deps in a try...catch block
+        # with a reasonable error/exception so a user knows what to install.
         import matgl
         from matgl.ext.ase import M3GNetCalculator
 
