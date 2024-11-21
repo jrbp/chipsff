@@ -245,6 +245,8 @@ def setup_calculator(calculator_type, calculator_settings):
     elif calculator_type == "mace-alexandria":
         from mace.calculators.mace import MACECalculator
 
+        # FIXME: Don't leave your personal home directory in here!
+        # This happens in several other places.
         model_path = calculator_settings.get(
             "model_path",
             "/users/dtw2/utils/models/alexandria_v2/mace/2D_universal_force_field_cpu.model",
