@@ -2718,6 +2718,7 @@ class AlignnFFForcesAnalyzer:
         self.job_info = {
             "calculator_type": calculator_type,
         }
+        # FIXME: num_samples is not defined
         self.num_samples = num_samples
 
     def setup_logger(self):
