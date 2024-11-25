@@ -36,7 +36,6 @@
       default = nixpkgs.legacyPackages.${system}.mkShell {
         inputsFrom = [self.packages.${system}.default.devShell];
         packages = with nixpkgs.legacyPackages.${system}; [
-          uv
           ruff
           pyright
           self.packages.${system}.default.config.deps.python.pkgs.ipython

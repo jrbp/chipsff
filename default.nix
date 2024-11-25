@@ -3,8 +3,7 @@
   lib,
   dream2nix,
   ...
-}:
-let
+}: let
   python = config.deps.python;
   nixpkgsTorch = python.pkgs.torch;
   torchWheel = config.deps.runCommand "torch-wheel" {} ''
@@ -12,13 +11,12 @@ let
     mkdir "$out"
     cp "${nixpkgsTorch.dist}/$file" "$out/$file"
   '';
-in
-{
+in {
   imports = [
     dream2nix.modules.dream2nix.WIP-python-pdm
   ];
   deps = {nixpkgs, ...}: {
-    python = nixpkgs.python312; # numpy 1.22.0 doesn't support >3.10
+    python = nixpkgs.python311;
   };
 
   mkDerivation = {
@@ -41,10 +39,6 @@ in
     ];
   };
 
-  # overrides.uvloop = {
-  #   doCheck = lib.mkForce false;
-  #   doInstallCheck = lib.mkForce false;
-  # };
   # Override for torch to pick the wheel from nixpkgs instead of pypi
   overrides.torch = {
     mkDerivation.src = torchWheel;

@@ -11,7 +11,7 @@ authors = [
   {name = "Kamal Choudhary"}
 ]
 dependencies = [
-  "numpy",
+  "numpy<2",
   "scipy",
   "jarvis-tools",
   "pydantic",
@@ -24,30 +24,28 @@ dependencies = [
   "requests",
   "tqdm",
   "pyyaml",
+  "elastic",
+  "ruamel.yaml",
   "chgnet"
 ]
 requires-python = ">=3.10"
 
 [project.optional-dependencies]
+phonons = ["phonopy", "ruamel", "phono3py"]
+kaleido = ["kaleido"]
 sevennet = ["sevenn"]
 eqV2 = ["fairchem"]
-phonons = ["phonopy", "ruamel", "phono3py"]
 alignn_ff = ["alignn"]
 matgl = ["matgl"]
 mace = ["mace"]
 orb = ["orb"]
 chgnet = ["chgnet"]
-elastic = ["elastic"]
 almostall = [
   "sevenn",
-  "phonopy",
-  "ruamel",
-  "phono3py",
   "alignn",
   "matgl",
   "mace",
   "chgnet",
-  "elastic",
 ]
 
 [project.scripts]
