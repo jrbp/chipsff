@@ -11,9 +11,9 @@ authors = [
   {name = "Kamal Choudhary"}
 ]
 dependencies = [
-  "numpy>=1.22.0",
-  "scipy>=1.6.3",
-  "jarvis-tools>=2021.07.19",
+  "numpy",
+  "scipy",
+  "jarvis-tools",
   "pydantic",
   "pydantic_settings",
   "pandas",
@@ -23,9 +23,10 @@ dependencies = [
   "scikit-learn",
   "requests",
   "tqdm",
-  "pyyaml"
+  "pyyaml",
+  "chgnet"
 ]
-requires-python = ">=3.8, <3.11"
+requires-python = ">=3.10"
 
 [project.optional-dependencies]
 sevennet = ["sevenn"]
@@ -37,16 +38,14 @@ mace = ["mace"]
 orb = ["orb"]
 chgnet = ["chgnet"]
 elastic = ["elastic"]
-all = [
+almostall = [
   "sevenn",
-  "fairchem",
   "phonopy",
   "ruamel",
   "phono3py",
   "alignn",
   "matgl",
   "mace",
-  "orb",
   "chgnet",
   "elastic",
 ]

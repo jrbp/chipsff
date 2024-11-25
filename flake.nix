@@ -20,26 +20,26 @@
   in {
     packages = eachSystem (system: {
       default = self.packages.${system}.chipsff;
-      chipsff =
-        dream2nix.lib.evalModules {
-          packageSets.nixpkgs = nixpkgs.legacyPackages.${system};
-          modules = [
-            ./default.nix
-            {
-              paths.projectRoot = ./.;
-              paths.projectRootFile = "flake.nix";
-              paths.package = ./.;
-            }
-          ];
-        };
+      chipsff = dream2nix.lib.evalModules {
+        packageSets.nixpkgs = nixpkgs.legacyPackages.${system};
+        modules = [
+          ./default.nix
+          {
+            paths.projectRoot = ./.;
+            paths.projectRootFile = "flake.nix";
+            paths.package = ./.;
+          }
+        ];
+      };
     });
     devShells = eachSystem (system: {
       default = nixpkgs.legacyPackages.${system}.mkShell {
-        inputsFrom = [self.packages.${system}.chipsff.devShell];
+        inputsFrom = [self.packages.${system}.default.devShell];
         packages = with nixpkgs.legacyPackages.${system}; [
+          uv
           ruff
           pyright
-          self.packages.${system}.chipsff.config.deps.python.pkgs.ipython
+          self.packages.${system}.default.config.deps.python.pkgs.ipython
         ];
       };
     });
